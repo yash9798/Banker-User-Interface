@@ -25,7 +25,19 @@ public class BankAccountMain extends JFrame {
 		transactionsMenu.add(transferItem);
 		transactionsMenu.add(getAccountInfoItem);
 		menuBar.add(transactionsMenu);
+		
 		JMenuItem dashboardItem = new JMenuItem("Dashboard");
+			menuBar.add(dashboardItem);
+		Dashboard dashboardPanel = new Dashboard();
+		this.add(dashboardPanel);
+		dashboardItem.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dashboardPanel.setVisible(true);
+			}
+			
+		});
 		menuBar.add(dashboardItem);
 		this.setJMenuBar(menuBar);
 		this.setBounds(100, 100, 500, 250);
