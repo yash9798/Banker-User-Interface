@@ -41,11 +41,14 @@ public class BankAccountMain extends JFrame {
 	 */
 	public static ArrayList<BankAccount> getAccountsFromName(ArrayList<BankAccount> accounts, String name) {
 		ArrayList<BankAccount> nameAccs  = new ArrayList<BankAccount>();
+		boolean hasAcc = false;
 		for (int i = 0; i < accounts.size(); i++) {
-			if (accounts.get(i).getName().equals(name)) 
+			if (accounts.get(i).getName().equals(name)) {
 				nameAccs.add(accounts.get(i));
+				hasAcc = true;
+			}	
 		}
-		return nameAccs;
+		if (hasAcc) return nameAccs; else return null;
 	}
 	/**
 	 * this method should return the bank account 
