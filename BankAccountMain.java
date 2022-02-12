@@ -1,3 +1,4 @@
+import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import javax.swing.JPanel;
 public class MelBank extends JFrame {
 	//create your fields here
 	public MelBank() {
+		CardLayout cardLayout = new CardLayout();
 		JMenuBar menuBar = new JMenuBar();
 		
 		JMenu accountMenu = new JMenu("Accounts");
@@ -32,21 +34,19 @@ public class MelBank extends JFrame {
 		transactionsMenu.add(getAccountInfoItem);
 		menuBar.add(transactionsMenu);
 		
-		
-		
 		JMenuItem dashboardItem = new JMenuItem("Dashboard");
+		JPanel overall = new JPanel();
+		overall.setLayout(cardLayout);
 		Dashboard dash = new Dashboard();
+		overall.add(dash, "dash");
 		dashboardItem.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dash.setVisDash();
-
+				cardLayout.show(overall, "dash");
 			}
-			
 		});	
 		menuBar.add(dashboardItem);
-		add(dash);
+		this.add(overall);
 		this.setJMenuBar(menuBar);
 		this.setBounds(100, 100, 500, 250);
 		this.setVisible(true);
