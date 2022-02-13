@@ -9,6 +9,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.io.*;
+import java.time.LocalDate;
 
 public class MelBank extends JFrame {
 	//fields
@@ -60,11 +61,19 @@ public class MelBank extends JFrame {
 		this.setVisible(true);
 		this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
 	}
-	public static void main(String[] args) throws IOException {
-		new File("accountInfo.txt").createNewFile(); //creates a text file called "acccountInfo.txt" provided one does not already exist
-		new MelBank();
+
+//MAIN METHOD BELOW
+public static void main(String[] args) throws IOException {
+	boolean fileCreated = new File("accountInfo.txt").createNewFile(); //creates a text file called "acccountInfo.txt" provided one does not already exist
+	if (fileCreated) { //Code block displays the date that the file was created in the file
+		PrintWriter pw = new PrintWriter(new FileWriter("accountInfo.txt"),true);
+		pw.println("accountInfo.txt created on " + LocalDate.now());
+		pw.close();
 	}
 	
+	new MelBank();
+}
+//MAIN METHOD ABOVE	
 	
 //get acc methods
 	public static ArrayList<BankAccount> getAccountsFromName(ArrayList<BankAccount> accounts, String name) {
@@ -118,22 +127,50 @@ public class MelBank extends JFrame {
 		 * CA<num>38263<num/><name>Obama<name/><street>1600 Pennsylvania Ave.<street/><city>Washington<city/><state>Maryland<state/><zip>12842<zip/><balance>419.26<balance/><trans>10<trans/>
 		 */
 		while ((s = br.readLine()) != null) {
-			accNum = Integer.parseInt(s.substring((s.indexOf("<num>") + 5),s.indexOf("<num/>")));
-			name = s.substring((s.indexOf("<name>") + 6),s.indexOf("<name/>"));
-			streetAddress = s.substring((s.indexOf("<street>") + 8),s.indexOf("<street/>"));
-			city = s.substring((s.indexOf("<city>") + 6),s.indexOf("<city/>"));
-			state = s.substring((s.indexOf("<state>") + 7),s.indexOf("<state/>"));
-			zipCode = s.substring((s.indexOf("<zip>") + 5),s.indexOf("<zip/>"));
-			balance = Double.parseDouble(s.substring((s.indexOf("<balance>") + 9),s.indexOf("<balance/>")));
-			numTransactions = Integer.parseInt(s.substring((s.indexOf("<trans>") + 7),s.indexOf("<trans/>")));
-			
-			//Constructs accounts
-			if (s.substring(0,1).equals("SA"))
-				accounts.add(new SavingsAccount(name,streetAddress,city,state,balance,zipCode,accNum));
-			if (s.substring(0,1).equals("CA")) {
-				accounts.add(new CheckingAccount(name,streetAddress,city,state,balance,zipCode,accNum,numTransactions));
+			if (s.length() > 1 && (s.substring(0,1).equals("SA") || s.substring(0,1).equals("CA"))) {
+				accNum = Integer.parseInt(s.substring((s.indexOf("<num>") + 5),s.indexOf("<num/>")));
+				name = s.substring((s.indexOf("<name>") + 6),s.indexOf("<name/>"));
+				streetAddress = s.substring((s.indexOf("<street>") + 8),s.indexOf("<street/>"));
+				city = s.substring((s.indexOf("<city>") + 6),s.indexOf("<city/>"));
+				state = s.substring((s.indexOf("<state>") + 7),s.indexOf("<state/>"));
+				zipCode = s.substring((s.indexOf("<zip>") + 5),s.indexOf("<zip/>"));
+				balance = Double.parseDouble(s.substring((s.indexOf("<balance>") + 9),s.indexOf("<balance/>")));
+				numTransactions = Integer.parseInt(s.substring((s.indexOf("<trans>") + 7),s.indexOf("<trans/>")));
+				
+				//Constructs accounts
+				if (s.substring(0,1).equals("SA"))
+					accounts.add(new SavingsAccount(name,streetAddress,city,state,balance,zipCode,accNum));
+				if (s.substring(0,1).equals("CA")) {
+					accounts.add(new CheckingAccount(name,streetAddress,city,state,balance,zipCode,accNum,numTransactions));
+				}
 			}
 		}
+	}
+//write to file methods for savings accounts and checking accounts
+	public void writeAccToFile(SavingsAccount s) throws IOException {
+		PrintWriter pw = new PrintWriter(new FileWriter("accountInfo.txt",true));
+		pw.println("\nSA"
+				+ "<num>" + s.getAccountNumber() + "<num/>"
+				+ "<name>" + s.getName() + "<name/>"
+				+ "<street>" + s.getStreetAddress() + "<street/>"
+				+ "<city>" + s.getCity() +  "<city/>"
+				+ "<state>" + s.getState() + "<state/>"
+				+ "<zip>" + s.getZipCode() + "<zip/>"
+				+ "<balance>" + s.getBalance() + "<balance/>");
+		pw.close();
+	}
+	public void writeAccToFile(CheckingAccount c) throws IOException {
+		PrintWriter pw = new PrintWriter(new FileWriter("accountInfo.txt",true));
+		pw.println("\nCA"
+				+ "<num>" + c.getAccountNumber() + "<num/>"
+				+ "<name>" + c.getName() + "<name/>"
+				+ "<street>" + c.getStreetAddress() + "<street/>"
+				+ "<city>" + c.getCity() +  "<city/>"
+				+ "<state>" + c.getState() + "<state/>"
+				+ "<zip>" + c.getZipCode() + "<zip/>"
+				+ "<balance>" + c.getBalance() + "<balance/>"
+				+ "<trans>" + c.getNumTransactions() + "<trans/>");
+		pw.close();
 	}
 
 }
