@@ -59,13 +59,18 @@ public class MelBank extends JFrame {
 	 * this method should return all bank accounts in 
 	 * a person's name.  You should implement this method
 	 */
-	public static ArrayList<BankAccount> getAccountsFromName(ArrayList<BankAccount> accounts, String name) {
+public static ArrayList<BankAccount> getAccountsFromName(ArrayList<BankAccount> accounts, String name) {
 		ArrayList<BankAccount> nameAccs  = new ArrayList<BankAccount>();
+		boolean hasAcc = false;
 		for (int i = 0; i < accounts.size(); i++) {
 			if (accounts.get(i).getName().equals(name)) 
+			if (accounts.get(i).getName().equals(name)) {
 				nameAccs.add(accounts.get(i));
+				hasAcc = true;
+			}	
 		}
-		return nameAccs; //FIX THIS PART
+		return nameAccs;
+		if (hasAcc) return nameAccs; else return null;
 	}
 	/**
 	 * this method should return the bank account 
@@ -77,6 +82,6 @@ public class MelBank extends JFrame {
 			if (accounts.get(i).getAccountNumber() == accountNumber) 
 				return accounts.get(i);
 		}
-		return null; //FIX THIS PART 
+		return null;
 	}
 }
