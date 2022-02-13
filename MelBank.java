@@ -10,6 +10,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 public class MelBank extends JFrame {
 	//create your fields here
+	ArrayList<BankAccount> accounts = new ArrayList<BankAccount>();
+	
 	public MelBank() {
 		CardLayout cardLayout = new CardLayout();
 		JMenuBar menuBar = new JMenuBar();
@@ -55,10 +57,9 @@ public class MelBank extends JFrame {
 	public static void main(String[] args) {
 		new MelBank();
 	}
-	/**
-	 * this method should return all bank accounts in 
-	 * a person's name.  You should implement this method
-	 */
+	
+	
+//get acc methods
 public static ArrayList<BankAccount> getAccountsFromName(ArrayList<BankAccount> accounts, String name) {
 		ArrayList<BankAccount> nameAccs  = new ArrayList<BankAccount>();
 		boolean hasAcc = false;
@@ -69,14 +70,8 @@ public static ArrayList<BankAccount> getAccountsFromName(ArrayList<BankAccount> 
 				hasAcc = true;
 			}	
 		}
-		return nameAccs;
 		if (hasAcc) return nameAccs; else return null;
 	}
-	/**
-	 * this method should return the bank account 
-	 * which matches the given account number.  You
-	 * should implement this method
-	 */
 	public static BankAccount getAccountFromNumber(ArrayList<BankAccount> accounts, int accountNumber) {
 		for (int i = 0; i < accounts.size(); i++) {
 			if (accounts.get(i).getAccountNumber() == accountNumber) 
