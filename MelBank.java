@@ -52,11 +52,74 @@ public class MelBank extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					cardLayout.show(overall, "dash");
 				}
-			});	
+			});
 			menuBar.add(dashboardItem);
 			this.add(overall);
 			this.setJMenuBar(menuBar);
 	
+			/*UserInfo userInfo = new UserInfo();
+			overall.add(userinfo, "userinfo");
+			userInfoItem.addActionListener(new ActionListener() {
+				@Override
+				.public void actionPerformed(ActionEvent e) {
+				cardLayout.show(overall, "userinfo");
+			}
+		});	
+		
+		Add add = new Add();
+		overall.add(add, "add");
+		addAccountItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(overall, "add");
+			}
+		});	
+		
+		Close close = new Close();
+		overall.add(close, "close");
+		closeAccountItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(overall, "close");
+			}
+		});	
+		
+		Deposit dep = new Deposit();
+		overall.add(dep, "dep");
+		depositItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(overall, "deposit");
+			}
+		});	
+		
+		Withdraw wd = new Withdraw();
+		overall.add(wd, "wd");
+		withdrawItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(overall, "wd");
+			}
+		});	
+		
+		Trans tr = new Trans();
+		overall.add(tr, "tr");
+		transferItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(overall, "close");
+			}
+		});	
+		
+		accountInfo ai = new accountInfo();
+		overall.add(ai, "ai");
+		getAccountInfoItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(overall, "ai");
+			}
+		});	*/
+			
 		this.setBounds(100, 100, 500, 250);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
