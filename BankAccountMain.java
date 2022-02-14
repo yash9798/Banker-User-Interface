@@ -28,16 +28,17 @@ public class MelBank extends JFrame {
 		JMenuItem withdrawItem = new JMenuItem("Withdraw");
 		JMenuItem transferItem = new JMenuItem("Transfer");
 		JMenuItem getAccountInfoItem = new JMenuItem("Get Account Info");
+		
 		transactionsMenu.add(depositItem);
 		transactionsMenu.add(withdrawItem);
 		transactionsMenu.add(transferItem);
 		transactionsMenu.add(getAccountInfoItem);
-		
-		menuBar.add(transactionsMenu);
-		menuBar.add(dashboardItem);
-		menuBar.add(accountMenu);
-		
 		JMenuItem dashboardItem = new JMenuItem("Dashboard");
+		menuBar.add(transactionsMenu);
+		menuBar.add(accountMenu);
+		menuBar.add(dashboardItem);
+		
+		
 		JPanel overall = new JPanel();
 		overall.setLayout(cardLayout);
 		Dashboard dash = new Dashboard();
@@ -49,7 +50,7 @@ public class MelBank extends JFrame {
 			}
 		});	
 		
-		UserInfo userInfo = new UserInfo();
+		/*UserInfo userInfo = new UserInfo();
 		overall.add(userinfo, "userinfo");
 		userInfoItem.addActionListener(new ActionListener() {
 			@Override
@@ -94,7 +95,7 @@ public class MelBank extends JFrame {
 			}
 		});	
 		
-		Trans tr = new Transe();
+		Trans tr = new Trans();
 		overall.add(tr, "tr");
 		transferItem.addActionListener(new ActionListener() {
 			@Override
@@ -110,7 +111,7 @@ public class MelBank extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				cardLayout.show(overall, "ai");
 			}
-		});	
+		});	*/
 		
 		
 		
