@@ -73,21 +73,15 @@ public class Dashboard extends JPanel {
 		gbc.insets = new Insets(10,10,10,10);
 		JButton end = new JButton("End of Month Update"); // + moners
 		end.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
 				String password = JOptionPane.showInputDialog("Enter a password: ");
-				if(password.equals("password"))
+				
+				if(password != null && password.equals("password"))
 				{
 					for(int i = 0; i < accs.size(); i++)
 					{
-						
-//						if(accs.get(i) instanceof CheckingAccount)
-//								{
-//							accs.get(i).endOfMonthUpdate();
-//								}
-//						if(accs.get(i) instanceof SavingsAccount)
-//						{
 							accs.get(i).endOfMonthUpdate();
-//						}
 					}
 				}
 			}});
@@ -98,6 +92,10 @@ public class Dashboard extends JPanel {
 		gbc.anchor = gbc.CENTER;
 		gbc.insets = new Insets(10,10,10,10);
 		JButton ow = new JButton("Overwrite"); // + moners
+		ow.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+			}});
 		add(ow,gbc);
 	}
 }
