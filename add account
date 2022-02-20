@@ -1,0 +1,166 @@
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class add1 extends JPanel{
+	ArrayList<BankAccount> accs;
+	public add1(ArrayList<BankAccount> b)
+	{
+		accs=b;
+		this.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.anchor = gbc.WEST;
+		gbc.insets = new Insets(10,10,10,10);
+		JLabel name = new JLabel("Name ");
+		add(name,gbc);
+		
+	
+		gbc.gridx = 1;
+		gbc.anchor = gbc.EAST;
+		gbc.insets = new Insets(0,0,0,0);
+		JTextField namebox = new JTextField("");
+		namebox.setPreferredSize(new Dimension(150,30));
+		add(namebox,gbc);
+	
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		gbc.anchor = gbc.WEST;
+		gbc.insets = new Insets(10,10,10,10);
+		JLabel sa = new JLabel("Street Address: ");
+		add(sa,gbc);
+		
+		gbc.gridx = 1;
+		gbc.anchor = gbc.EAST;
+		gbc.insets = new Insets(0,0,0,0);
+		JTextField sa2 = new JTextField("");
+		sa2.setPreferredSize(new Dimension(150,30));
+		add(sa2,gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		gbc.anchor = gbc.WEST;
+		gbc.insets = new Insets(10,10,10,10);
+		JLabel city = new JLabel("City: ");
+		add(city,gbc);
+		
+		gbc.gridx = 1;
+		gbc.anchor = gbc.EAST;
+		gbc.insets = new Insets(0,0,0,0);
+		JTextField city2 = new JTextField("");
+		city2.setPreferredSize(new Dimension(150,30));
+		add(city2,gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 3;
+		gbc.anchor = gbc.WEST;
+		gbc.insets = new Insets(10,10,10,10);
+		JLabel state = new JLabel("State: ");
+		add(state,gbc);
+		
+		gbc.gridx = 1;
+		gbc.anchor = gbc.EAST;
+		gbc.insets = new Insets(0,0,0,0);
+		JTextField state2 = new JTextField("");
+		state2.setPreferredSize(new Dimension(150,30));
+		add(state2,gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 4;
+		gbc.anchor = gbc.WEST;
+		gbc.insets = new Insets(10,10,10,10);
+		JLabel zip = new JLabel("Zip: ");
+		add(zip,gbc);
+		
+		gbc.gridx = 1;
+		gbc.anchor = gbc.EAST;
+		gbc.insets = new Insets(0,0,0,0);
+		JTextField zip2 = new JTextField("");
+		zip2.setPreferredSize(new Dimension(150,30));
+		add(zip2,gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 5;
+		gbc.anchor = gbc.WEST;
+		gbc.insets = new Insets(10,10,10,10);
+		JLabel bal = new JLabel("Balance: ");
+		add(bal,gbc);
+		
+		gbc.gridx = 1;
+		gbc.anchor = gbc.EAST;
+		gbc.insets = new Insets(0,0,0,0);
+		JTextField bal2 = new JTextField("");
+		bal2.setPreferredSize(new Dimension(150,30));
+		add(bal2,gbc);
+		
+		gbc.gridx = 1;
+		gbc.gridy = -1;
+		 String[] optionsToChoose = {"type of account?", "checking", "savings"};
+		 JComboBox<String> jComboBox = new JComboBox<>(optionsToChoose);
+		gbc.anchor = gbc.CENTER;
+		add(jComboBox,gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 7;
+		gbc.gridwidth = 2;
+		gbc.insets = new Insets(0,0,0,0);
+		gbc.anchor = gbc.SOUTH;
+		JButton create = new JButton("Create Account");
+		create.setPreferredSize(new Dimension(300, 40));
+		add(create, gbc);
+		create.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int saved = -1;
+				
+				if(!(namebox.getText().isEmpty()) && !(sa2.getText().isEmpty()) && !(city2.getText().isEmpty()) && !(state2.getText().isEmpty()) && !(zip2.getText().isEmpty()) && !(bal2.getText().isEmpty()) && jComboBox.getSelectedIndex() >= 1)
+				{
+					for(int i = 0; i < accs.size(); i++)
+					{
+						if(accs.get(i).getName() == namebox.getText())
+						{
+							saved = i;
+						}
+					}
+					
+					if(saved > -1)
+					{
+						
+					}
+					else
+					{
+						if(jComboBox.getSelectedIndex() == 1)
+						{
+							
+						}
+					}
+				}
+			
+				namebox.setText(null);
+				sa2.setText(null);
+				city2.setText(null);
+				state2.setText(null);
+				zip2.setText(null);
+				bal2.setText(null);
+				
+		
+			
+			}
+			
+		});
+		
+	}
+}
