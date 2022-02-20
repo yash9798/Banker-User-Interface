@@ -22,7 +22,6 @@ public class MelBank extends JFrame {
 		CardLayout cardLayout = new CardLayout();
 	//components
 			JMenuBar menuBar = new JMenuBar();
-			
 			JMenu accountMenu = new JMenu("Accounts");
 			JMenuItem userInfoItem = new JMenuItem("User Info");
 			JMenuItem addAccountItem = new JMenuItem("Add Account");
@@ -46,7 +45,7 @@ public class MelBank extends JFrame {
 			JMenuItem dashboardItem = new JMenuItem("Dashboard");
 			JPanel overall = new JPanel();
 			overall.setLayout(cardLayout);
-			Dashboard dash = new Dashboard();
+			Dashboard dash = new Dashboard(accounts);
 			overall.add(dash, "dash");
 			dashboardItem.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -56,6 +55,15 @@ public class MelBank extends JFrame {
 			menuBar.add(dashboardItem);
 			this.add(overall);
 			this.setJMenuBar(menuBar);
+			
+			add1 add = new add1(accounts);
+			overall.add(add, "add");
+			addAccountItem.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					cardLayout.show(overall, "add");
+				}
+			});	
 	
 			/*UserInfo userInfo = new UserInfo();
 			overall.add(userinfo, "userinfo");
@@ -66,14 +74,14 @@ public class MelBank extends JFrame {
 			}
 		});	
 		
-		Add add = new Add();
-		overall.add(add, "add");
-		addAccountItem.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				cardLayout.show(overall, "add");
-			}
-		});	
+			add add = new add();
+			overall.add(add, "add");
+			addAccountItem.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					cardLayout.show(overall, "add");
+				}
+			});	
 		
 		Close close = new Close();
 		overall.add(close, "close");
@@ -120,7 +128,7 @@ public class MelBank extends JFrame {
 			}
 		});	*/
 			
-		this.setBounds(100, 100, 500, 250);
+		this.setBounds(100, 100, 500, 400);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
 	}
@@ -234,6 +242,10 @@ public static void main(String[] args) throws IOException {
 				+ "<balance>" + c.getBalance() + "<balance/>"
 				+ "<trans>" + c.getNumTransactions() + "<trans/>");
 		pw.close();
+	}
+	
+	public int getNumBank() {
+		return accounts.size();
 	}
 
 }
