@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class add1 extends JPanel{
+public class add extends JPanel{
 	ArrayList<BankAccount> accs;
 	public add1(ArrayList<BankAccount> b)
 	{
