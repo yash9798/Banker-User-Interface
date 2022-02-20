@@ -138,7 +138,10 @@ public class add extends JPanel{
 					
 					if(saved > -1)
 					{
-						
+						if(accs.get(saved).getStreetAddress() == sa2.getText() && accs.get(saved).getCity() == city2.getText() && accs.get(saved).getState() == state2.getText() && accs.get(saved).getZipCode() == zip2.getText())
+						{
+							
+						}
 					}
 					else
 					{
