@@ -58,7 +58,7 @@ public class Close extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				boolean ok = false;
 				try
 				{
 					int inum = Integer.parseInt(ab.getText());
@@ -69,14 +69,15 @@ public class Close extends JPanel{
 					{
 						if(accs.get(i).getAccountNumber() == inum && accs.get(i).getName() == nb.getText())
 						{
-						
-						}
-						else
-						{
-							JOptionPane.showMessageDialog(null, "YASSSSSSSSSSSSSSSSSSSSSSSSSS");
+						ok = true;
 						}
 						
 					}
+					if (!ok)
+					{
+						JOptionPane.showMessageDialog(null, "No Matching Accounts");
+					}
+		
 				}
 
 			
