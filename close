@@ -1,0 +1,101 @@
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class Close extends JPanel{
+	ArrayList<BankAccount> accs;
+	
+	public Close(ArrayList<BankAccount> b)
+	{
+		accs=b;
+		this.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.anchor = gbc.WEST;
+		gbc.insets = new Insets(10,10,10,10);
+		JLabel a = new JLabel("Account Number: ");
+		add(a,gbc);
+		
+		
+		gbc.gridy = 1;
+		JLabel n = new JLabel("Name: ");
+		add(n,gbc);
+		
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		gbc.anchor = gbc.EAST;
+		gbc.insets = new Insets(0,0,0,0);
+		JTextField ab = new JTextField("");
+		ab.setPreferredSize(new Dimension(150,30));
+		add(ab,gbc);
+		
+		gbc.gridy = 1;
+		JTextField nb = new JTextField("");
+		nb.setPreferredSize(new Dimension(150,30));
+		add(nb,gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		gbc.gridwidth = 2;
+		gbc.insets = new Insets(0,0,0,0);
+		gbc.anchor = gbc.SOUTH;
+		JButton create = new JButton("Close Account");
+		create.setPreferredSize(new Dimension(300, 40));
+		add(create, gbc);
+		create.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				try
+				{
+					int inum = Integer.parseInt(ab.getText());
+			if(!(ab.getText().isEmpty()) && !(nb.getText().isEmpty()))
+			{
+				
+					for(int i = 0; i < accs.size(); i++)
+					{
+						if(accs.get(i).getAccountNumber() == inum && accs.get(i).getName() == nb.getText())
+						{
+						
+						}
+						else
+						{
+							JOptionPane.showMessageDialog(null, "YASSSSSSSSSSSSSSSSSSSSSSSSSS");
+						}
+						
+					}
+				}
+
+			
+			else
+			{
+				JOptionPane.showMessageDialog(null,"");
+			}
+			}
+			catch(Exception a) {
+					
+				if(ab.getText().isEmpty())
+				{
+					JOptionPane.showMessageDialog(null, "bustie this isnt enough information");
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "bustie the account number isnt a number...");
+				}
+					
+				}
+			}});
+		}}
