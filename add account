@@ -9,10 +9,12 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 
-public class add extends JPanel{
+public class add1 extends JPanel{
 	ArrayList<BankAccount> accs;
 	public add1(ArrayList<BankAccount> b)
 	{
@@ -125,45 +127,85 @@ public class add extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int saved = -1;
-				
-				if(!(namebox.getText().isEmpty()) && !(sa2.getText().isEmpty()) && !(city2.getText().isEmpty()) && !(state2.getText().isEmpty()) && !(zip2.getText().isEmpty()) && !(bal2.getText().isEmpty()) && jComboBox.getSelectedIndex() >= 1)
+				 
+				try
 				{
-					for(int i = 0; i < accs.size(); i++)
+					double inum = Double.parseDouble(bal2.getText());
+					if(!(namebox.getText().isEmpty()) && !(sa2.getText().isEmpty()) && !(city2.getText().isEmpty()) && !(state2.getText().isEmpty()) && !(zip2.getText().isEmpty()) && inum >=0 && jComboBox.getSelectedIndex() >= 1)
 					{
-						if(accs.get(i).getName() == namebox.getText())
-						{
-							saved = i;
-						}
-					}
 					
-					if(saved > -1)
-					{
-						if(accs.get(saved).getStreetAddress() == sa2.getText() && accs.get(saved).getCity() == city2.getText() && accs.get(saved).getState() == state2.getText() && accs.get(saved).getZipCode() == zip2.getText())
+						for(int i = 0; i < accs.size(); i++)
 						{
-							
+							if(accs.get(i).getName() == namebox.getText())
+							{
+								saved = i;
+							}
+						}
+						
+						if(saved > -1)
+						{
+							if(accs.get(saved).getStreetAddress() == sa2.getText() && accs.get(saved).getCity() == city2.getText() && accs.get(saved).getState() == state2.getText() && accs.get(saved).getZipCode() == zip2.getText())
+							{
+								if(jComboBox.getSelectedIndex() == 1)
+								{
+									b.add(new CheckingAccount(namebox.getText(), sa2.getText(), city2.getText(), state2.getText(), inum, zip2.getText()));
+								}
+								if(jComboBox.getSelectedIndex() == 2)
+								{
+									b.add(new SavingsAccount(namebox.getText(), sa2.getText(), city2.getText(), state2.getText(), inum, zip2.getText()));
+								}
+							}
+							else
+							{
+								JOptionPane.showMessageDialog(null, "hey bestie it doesnt match you might need to update info bustie bye bustie: ");
+							}
+						}
+						else
+						{
+							if(jComboBox.getSelectedIndex() == 1)
+							{
+								b.add(new CheckingAccount(namebox.getText(), sa2.getText(), city2.getText(), state2.getText(), inum, zip2.getText()));
+							}
+							if(jComboBox.getSelectedIndex() == 2)
+							{
+								b.add(new SavingsAccount(namebox.getText(), sa2.getText(), city2.getText(), state2.getText(), inum, zip2.getText()));
+							}
 						}
 					}
 					else
 					{
-						if(jComboBox.getSelectedIndex() == 1)
-						{
-							
-						}
+						JOptionPane.showMessageDialog(null, "bustie this isnt enough information ");
 					}
-				}
+					
+					
+					namebox.setText(null);
+					sa2.setText(null);
+					city2.setText(null);
+					state2.setText(null);
+					zip2.setText(null);
+					bal2.setText(null);
+					
 			
-				namebox.setText(null);
-				sa2.setText(null);
-				city2.setText(null);
-				state2.setText(null);
-				zip2.setText(null);
-				bal2.setText(null);
 				
-		
+				}
+				
+				catch(Exception a) {
+					
+					if(bal2.getText().isEmpty())
+					{
+						JOptionPane.showMessageDialog(null, "not enough information entered ");
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "deposit entered is not a number ");
+					}
+					
+					
+				}
+				
+				
 			
-			}
-			
-		});
+		}
 		
-	}
-}
+	});
+}}
