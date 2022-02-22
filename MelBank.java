@@ -197,25 +197,31 @@ public static void main(String[] args) throws IOException {
 		 * NOTE: BANK ACCOUNT INFO IS DISPLAYED IN THE FILE AS:
 		 * CA<num>38263<num/><name>Obama<name/><street>1600 Pennsylvania Ave.<street/><city>Washington<city/><state>Maryland<state/><zip>12842<zip/><balance>419.26<balance/><trans>10<trans/>
 		 */
-		while ((s = br.readLine()) != null) {
-			if (s.length() > 1 && (s.substring(0,1).equals("SA") || s.substring(0,1).equals("CA"))) {
-				accNum = Integer.parseInt(s.substring((s.indexOf("<num>") + 5),s.indexOf("<num/>")));
-				name = s.substring((s.indexOf("<name>") + 6),s.indexOf("<name/>"));
-				streetAddress = s.substring((s.indexOf("<street>") + 8),s.indexOf("<street/>"));
-				city = s.substring((s.indexOf("<city>") + 6),s.indexOf("<city/>"));
-				state = s.substring((s.indexOf("<state>") + 7),s.indexOf("<state/>"));
-				zipCode = s.substring((s.indexOf("<zip>") + 5),s.indexOf("<zip/>"));
-				balance = Double.parseDouble(s.substring((s.indexOf("<balance>") + 9),s.indexOf("<balance/>")));
-				numTransactions = Integer.parseInt(s.substring((s.indexOf("<trans>") + 7),s.indexOf("<trans/>")));
-				
-				//Constructs accounts
-				if (s.substring(0,1).equals("SA"))
-					accounts.add(new SavingsAccount(name,streetAddress,city,state,balance,zipCode,accNum));
-				if (s.substring(0,1).equals("CA")) {
-					accounts.add(new CheckingAccount(name,streetAddress,city,state,balance,zipCode,accNum,numTransactions));
+			while ((s = br.readLine()) != null) {
+				if (s.length() > 1) System.err.println(s + "\n" + s.substring(0,2));
+				if (s.length() > 1 && (s.substring(0,2).equals("SA") || s.substring(0,2).equals("CA"))) {
+					
+					accNum = Integer.parseInt(s.substring((s.indexOf("<num>") + 5),s.indexOf("<num/>")));
+					name = s.substring((s.indexOf("<name>") + 6),s.indexOf("<name/>"));
+					streetAddress = s.substring((s.indexOf("<street>") + 8),s.indexOf("<street/>"));
+					city = s.substring((s.indexOf("<city>") + 6),s.indexOf("<city/>"));
+					state = s.substring((s.indexOf("<state>") + 7),s.indexOf("<state/>"));
+					zipCode = s.substring((s.indexOf("<zip>") + 5),s.indexOf("<zip/>"));
+					balance = Double.parseDouble(s.substring((s.indexOf("<balance>") + 9),s.indexOf("<balance/>")));
+					numTransactions = Integer.parseInt(s.substring((s.indexOf("<trans>") + 7),s.indexOf("<trans/>")));
+					
+					System.out.println(accNum + " " + name + " " + streetAddress + " " + city + " " + state + " " + zipCode + " " + balance + " " + numTransactions);
+					//Constructs accounts
+					if (s.substring(0,2).equals("SA")) {
+						accounts.add(new SavingsAccount(name,streetAddress,city,state,balance,zipCode,accNum));
+						System.err.println("SA Made" + accounts.size());
+					}
+					if (s.substring(0,2).equals("CA")) {
+						accounts.add(new CheckingAccount(name,streetAddress,city,state,balance,zipCode,accNum,numTransactions));
+						System.err.println("CA Made" + accounts.size());
+					}
 				}
 			}
-		}
 	}
 //write to file methods for savings accounts and checking accounts
 	public void writeAccToFile(SavingsAccount s) throws IOException {
