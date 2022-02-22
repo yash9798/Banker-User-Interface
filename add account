@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
+import java.awt.Color;
 
 public class add1 extends JPanel{
 	ArrayList<BankAccount> accs;
@@ -21,6 +22,7 @@ public class add1 extends JPanel{
 		accs=b;
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
+		this.setBackground(new Color(204,255,255));
 		
 		gbc.gridx = 0;
 		gbc.gridy = 0;
@@ -109,7 +111,7 @@ public class add1 extends JPanel{
 		
 		gbc.gridx = 1;
 		gbc.gridy = -1;
-		 String[] optionsToChoose = {"type of account?", "checking", "savings"};
+		 String[] optionsToChoose = {"--Account Type--", "Checking", "Savings"};
 		 JComboBox<String> jComboBox = new JComboBox<>(optionsToChoose);
 		gbc.anchor = gbc.CENTER;
 		add(jComboBox,gbc);
