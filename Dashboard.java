@@ -14,7 +14,11 @@ import javax.swing.JPanel;
 import java.awt.Color;
 
 public class Dashboard extends JPanel {
-	ArrayList<BankAccount> accs;;
+	ArrayList<BankAccount> accs;
+	JLabel bank;
+	JLabel check;
+	JLabel savings;
+	JLabel moners;
 	public Dashboard(ArrayList<BankAccount> b) throws IOException
 	{
 		accs=b;
@@ -28,7 +32,7 @@ public class Dashboard extends JPanel {
 		gbc.gridy = 0;
 		gbc.anchor = gbc.WEST;
 		gbc.insets = new Insets(10,10,10,10);
-		JLabel bank = new JLabel("Bank accounts: " + accs.size()); // + num bank accounts
+		bank = new JLabel("Bank accounts: " + accs.size()); // + num bank accounts
 		add(bank,gbc);
 		
 		gbc.gridx = 0;
@@ -52,21 +56,21 @@ public class Dashboard extends JPanel {
 			
 			m += accs.get(i).getBalance();
 		}
-		JLabel check = new JLabel("Checking accounts: " +c); // + num checkings accounts
+		check = new JLabel("Checking accounts: " +c); // + num checkings accounts
 		add(check,gbc);
 		
 		gbc.gridx = 0;
 		gbc.gridy = 2;
 		gbc.anchor = gbc.WEST;
 		gbc.insets = new Insets(10,10,10,10);
-		JLabel savings = new JLabel("Savings accounts: " + r); // + num savings accounts
+		savings = new JLabel("Savings accounts: " + r); // + num savings accounts
 		add(savings,gbc);
 		
 		gbc.gridx = 0;
 		gbc.gridy = 3;
 		gbc.anchor = gbc.WEST;
 		gbc.insets = new Insets(10,10,10,10);
-		JLabel moners = new JLabel("Moners deposited $" + m); // + moners
+		moners = new JLabel("Moners deposited $" + m); // + moners
 		add(moners,gbc);
 		
 		gbc.gridx = 1;
@@ -99,5 +103,30 @@ public class Dashboard extends JPanel {
 			
 			}});
 		add(ow,gbc);
+	}
+	
+	public void refresh() {
+		bank.setText("Bank accounts: " + accs.size());
+		int c = 0;
+		int r = 0;
+		int m = 0;
+		for(int i = 0; i < accs.size(); i++)
+		{
+			
+			if(accs.get(i) instanceof CheckingAccount)
+			{
+				c++;
+			}
+			if(accs.get(i) instanceof SavingsAccount)
+			{
+				r++;
+			}
+			
+			m += accs.get(i).getBalance();
+		}
+		check.setText("Checking accounts: " +c); // + num checkings accounts
+		savings.setText("Savings accounts: " + r); // + num savings accounts
+		moners.setText("Moners deposited $" + m); // + moners
+		
 	}
 }
