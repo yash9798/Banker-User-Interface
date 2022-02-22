@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import java.awt.Color;
 
 public class Dashboard extends JPanel {
 	ArrayList<BankAccount> accs;;
@@ -21,6 +22,7 @@ public class Dashboard extends JPanel {
 		this.setVisible(false);
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
+		this.setBackground(new Color(0,255,140));
 		
 		gbc.gridx = 0;
 		gbc.gridy = 0;
