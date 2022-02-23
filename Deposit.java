@@ -57,7 +57,7 @@ public class Deposit extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int unum = Integer.parseInt(tnum.getText());
-					int dAmt = Integer.parseInt(tamt.getText());
+					double dAmt = Double.parseDouble(tamt.getText());
 					BankAccount ba = null;
 					for (int i = 0; i < b.size(); i++) {
 						if (b.get(i).getAccountNumber() == unum && dAmt > 0) {
@@ -67,8 +67,9 @@ public class Deposit extends JPanel {
 							ba = b.get(i);
 						}
 					}
-					JOptionPane.showMessageDialog(null, "New Balance: " + ba.getBalance(), "$" + dAmt + " Deposit Successful", JOptionPane.INFORMATION_MESSAGE);
-					
+					JOptionPane.showMessageDialog(null, "New Balance: $" + ((int)(100*ba.getBalance()))/100.0, "$" + dAmt + " Deposit Successful", JOptionPane.INFORMATION_MESSAGE);
+					tnum.setText(null);
+					tamt.setText(null);
 				} catch (Exception e1) {}
 			}});
 	}
