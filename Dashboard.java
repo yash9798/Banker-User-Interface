@@ -74,7 +74,7 @@ public class Dashboard extends JPanel {
 		gbc.gridy = 3;
 		gbc.anchor = gbc.WEST;
 		gbc.insets = new Insets(10,10,10,10);
-		moners = new JLabel("Moners deposited $" + m); // + moners
+		moners = new JLabel("Money deposited $" + m); // + moners
 		add(moners,gbc);
 		
 		gbc.gridx = 1;
@@ -120,6 +120,7 @@ public class Dashboard extends JPanel {
 				} catch (IOException e1) {
 					System.err.println("write to file failed");
 				}
+				refresh();
 			}});
 		add(ow,gbc);
 	}
@@ -145,7 +146,7 @@ public class Dashboard extends JPanel {
 		}
 		check.setText("Checking accounts: " +c); // + num checkings accounts
 		savings.setText("Savings accounts: " + r); // + num savings accounts
-		moners.setText("Moners deposited $" + m); // + moners
+		moners.setText("Money deposited $" + m); // + moners
 	}
 	
 	//write to file methods for savings accounts and checking accounts
