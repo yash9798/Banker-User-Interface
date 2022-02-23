@@ -52,16 +52,16 @@ public class AccountInfo extends JPanel {
 		search.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String theText = "";
+				display.setText("");
 				if(!name.getText().equals("")) {
 					for(int i = 0; i < accs.size(); i++) {
 						if(accs.get(i).getName().equals(name.getText())) {
-							theText += accs.get(i).getAccountNumber() + "\t";
+							display.append(accs.get(i).getAccountNumber() + "\t");
 							if(accs.get(i) instanceof SavingsAccount)
-								theText += "Savings Account\t";
+								display.append("Savings Account\t");
 							if(accs.get(i) instanceof CheckingAccount)
-								theText += "Checking Account\t";
-							theText += accs.get(i).getBalance() + "\n";
+								display.append("Checking Account\t");
+							display.append(accs.get(i).getBalance() + "\n");
 						}
 					}
 				}
