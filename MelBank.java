@@ -82,16 +82,16 @@ public class MelBank extends JFrame {
 				cardLayout.show(overall, "close");
 			}
 		});	
-		/*
-		Deposit dep = new Deposit();
+		
+		Deposit dep = new Deposit(accounts);
 		overall.add(dep, "dep");
 		depositItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				cardLayout.show(overall, "deposit");
+				cardLayout.show(overall, "dep");
 			}
 		});	
-		
+		/*
 		Withdraw wd = new Withdraw();
 		overall.add(wd, "wd");
 		withdrawItem.addActionListener(new ActionListener() {
