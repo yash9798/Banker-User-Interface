@@ -91,8 +91,8 @@ public class MelBank extends JFrame {
 				cardLayout.show(overall, "dep");
 			}
 		});	
-		/*
-		Withdraw wd = new Withdraw();
+		
+		Withdraw wd = new Withdraw(accounts);
 		overall.add(wd, "wd");
 		withdrawItem.addActionListener(new ActionListener() {
 			@Override
@@ -100,7 +100,7 @@ public class MelBank extends JFrame {
 				cardLayout.show(overall, "wd");
 			}
 		});	
-		
+		/*
 		Trans tr = new Trans();
 		overall.add(tr, "tr");
 		transferItem.addActionListener(new ActionListener() {
