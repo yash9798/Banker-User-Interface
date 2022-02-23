@@ -133,6 +133,7 @@ public class add1 extends JPanel{
 				try
 				{
 					double inum = Double.parseDouble(bal2.getText());
+					inum = ((int)(100*inum))/100.0;
 					if(!(namebox.getText().isEmpty()) && !(sa2.getText().isEmpty()) && !(city2.getText().isEmpty()) && !(state2.getText().isEmpty()) && !(zip2.getText().isEmpty()) && inum >=0 && jComboBox.getSelectedIndex() >= 1)
 					{
 					
