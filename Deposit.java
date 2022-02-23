@@ -21,7 +21,7 @@ public class Deposit extends JPanel {
 		this.setVisible(false);
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
-		this.setBackground(new Color(204,102,0));
+		this.setBackground(new Color(255,102,255));
 		
 		gbc.gridx = 0;
 		gbc.gridy = 0;
