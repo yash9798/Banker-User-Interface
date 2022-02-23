@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import java.awt.Color;
+
 public class UserInfo extends JPanel {
 	private ArrayList<BankAccount> accs;
 	public UserInfo(ArrayList<BankAccount> b) throws IOException {
@@ -20,6 +22,7 @@ public class UserInfo extends JPanel {
 		this.setVisible(false);
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
+		this.setBackground(new Color(255,242,179));
 		
 		gbc.gridx = 1;
 		gbc.gridy = 0;
