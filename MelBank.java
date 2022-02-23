@@ -65,25 +65,16 @@ public class MelBank extends JFrame {
 				}
 			});	
 	
-			/*UserInfo userInfo = new UserInfo();
-			overall.add(userinfo, "userinfo");
-			userInfoItem.addActionListener(new ActionListener() {
-				@Override
-				.public void actionPerformed(ActionEvent e) {
-				cardLayout.show(overall, "userinfo");
-			}
+		UserInfo userInfo = new UserInfo(accounts);
+		overall.add(userInfo, "userinfo");
+		userInfoItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			cardLayout.show(overall, "userinfo");
+		}
 		});	
 		
-			add add = new add();
-			overall.add(add, "add");
-			addAccountItem.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					cardLayout.show(overall, "add");
-				}
-			});	
-		
-		Close close = new Close();
+		Close close = new Close(accounts);
 		overall.add(close, "close");
 		closeAccountItem.addActionListener(new ActionListener() {
 			@Override
@@ -91,7 +82,7 @@ public class MelBank extends JFrame {
 				cardLayout.show(overall, "close");
 			}
 		});	
-		
+		/*
 		Deposit dep = new Deposit();
 		overall.add(dep, "dep");
 		depositItem.addActionListener(new ActionListener() {
@@ -138,7 +129,8 @@ public static void main(String[] args) throws IOException {
 	boolean fileCreated = new File("accountInfo.txt").createNewFile(); //creates a text file called "acccountInfo.txt" provided one does not already exist
 	if (fileCreated) { //Code block displays the date that the file was created in the file
 		PrintWriter pw = new PrintWriter(new FileWriter("accountInfo.txt"),true);
-		pw.println("accountInfo.txt created on " + LocalDate.now());
+		pw.println("File accountInfo.txt created on " + LocalDate.now());
+		pw.println("Last updated on " + LocalDate.now());
 		pw.close();
 	}
 	
@@ -192,13 +184,12 @@ public static void main(String[] args) throws IOException {
 		 * 		City
 		 * 		Zip Code
 		 * 		Balance
-		 * 		numTransactions (for checking account only
+		 * 		numTransactions (for checking account only)
 		 * 
 		 * NOTE: BANK ACCOUNT INFO IS DISPLAYED IN THE FILE AS:
 		 * CA<num>38263<num/><name>Obama<name/><street>1600 Pennsylvania Ave.<street/><city>Washington<city/><state>Maryland<state/><zip>12842<zip/><balance>419.26<balance/><trans>10<trans/>
 		 */
 			while ((s = br.readLine()) != null) {
-				if (s.length() > 1) System.err.println(s + "\n" + s.substring(0,2));
 				if (s.length() > 1 && (s.substring(0,2).equals("SA") || s.substring(0,2).equals("CA"))) {
 					
 					accNum = Integer.parseInt(s.substring((s.indexOf("<num>") + 5),s.indexOf("<num/>")));
@@ -208,47 +199,19 @@ public static void main(String[] args) throws IOException {
 					state = s.substring((s.indexOf("<state>") + 7),s.indexOf("<state/>"));
 					zipCode = s.substring((s.indexOf("<zip>") + 5),s.indexOf("<zip/>"));
 					balance = Double.parseDouble(s.substring((s.indexOf("<balance>") + 9),s.indexOf("<balance/>")));
-					numTransactions = Integer.parseInt(s.substring((s.indexOf("<trans>") + 7),s.indexOf("<trans/>")));
+					if (s.substring(0,2).equals("CA")) numTransactions = Integer.parseInt(s.substring((s.indexOf("<trans>") + 7),s.indexOf("<trans/>")));
 					
-					System.out.println(accNum + " " + name + " " + streetAddress + " " + city + " " + state + " " + zipCode + " " + balance + " " + numTransactions);
 					//Constructs accounts
 					if (s.substring(0,2).equals("SA")) {
 						accounts.add(new SavingsAccount(name,streetAddress,city,state,balance,zipCode,accNum));
-						System.err.println("SA Made" + accounts.size());
 					}
 					if (s.substring(0,2).equals("CA")) {
 						accounts.add(new CheckingAccount(name,streetAddress,city,state,balance,zipCode,accNum,numTransactions));
-						System.err.println("CA Made" + accounts.size());
 					}
 				}
 			}
 	}
-//write to file methods for savings accounts and checking accounts
-	public void writeAccToFile(SavingsAccount s) throws IOException {
-		PrintWriter pw = new PrintWriter(new FileWriter("accountInfo.txt",true));
-		pw.println("\nSA"
-				+ "<num>" + s.getAccountNumber() + "<num/>"
-				+ "<name>" + s.getName() + "<name/>"
-				+ "<street>" + s.getStreetAddress() + "<street/>"
-				+ "<city>" + s.getCity() +  "<city/>"
-				+ "<state>" + s.getState() + "<state/>"
-				+ "<zip>" + s.getZipCode() + "<zip/>"
-				+ "<balance>" + s.getBalance() + "<balance/>");
-		pw.close();
-	}
-	public void writeAccToFile(CheckingAccount c) throws IOException {
-		PrintWriter pw = new PrintWriter(new FileWriter("accountInfo.txt",true));
-		pw.println("\nCA"
-				+ "<num>" + c.getAccountNumber() + "<num/>"
-				+ "<name>" + c.getName() + "<name/>"
-				+ "<street>" + c.getStreetAddress() + "<street/>"
-				+ "<city>" + c.getCity() +  "<city/>"
-				+ "<state>" + c.getState() + "<state/>"
-				+ "<zip>" + c.getZipCode() + "<zip/>"
-				+ "<balance>" + c.getBalance() + "<balance/>"
-				+ "<trans>" + c.getNumTransactions() + "<trans/>");
-		pw.close();
-	}
+
 	
 	public int getNumBank() {
 		return accounts.size();
