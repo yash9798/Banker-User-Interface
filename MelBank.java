@@ -49,6 +49,7 @@ public class MelBank extends JFrame {
 			overall.add(dash, "dash");
 			dashboardItem.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					dash.refresh();
 					cardLayout.show(overall, "dash");
 				}
 			});
@@ -65,14 +66,6 @@ public class MelBank extends JFrame {
 				}
 			});	
 	
-		UserInfo userInfo = new UserInfo(accounts);
-		overall.add(userInfo, "userinfo");
-		userInfoItem.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			cardLayout.show(overall, "userinfo");
-		}
-		});	
 		
 		Close close = new Close(accounts);
 		overall.add(close, "close");
@@ -83,7 +76,26 @@ public class MelBank extends JFrame {
 			}
 		});	
 		
-		Deposit dep = new Deposit(accounts);
+		AccountInfo ai = new AccountInfo(accounts);
+		overall.add(ai, "ai");
+		getAccountInfoItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(overall, "ai");
+			}
+		});	
+		
+		/*
+		 * 
+		 * 	UserInfo userInfo = new UserInfo(accounts);
+		overall.add(userInfo, "userinfo");
+		userInfoItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			cardLayout.show(overall, "userinfo");
+		}
+		});	
+		 * Deposit dep = new Deposit(accounts);
 		overall.add(dep, "dep");
 		depositItem.addActionListener(new ActionListener() {
 			@Override
@@ -100,7 +112,6 @@ public class MelBank extends JFrame {
 				cardLayout.show(overall, "wd");
 			}
 		});	
-		/*
 		Trans tr = new Trans();
 		overall.add(tr, "tr");
 		transferItem.addActionListener(new ActionListener() {
@@ -110,17 +121,11 @@ public class MelBank extends JFrame {
 			}
 		});	
 		
-		accountInfo ai = new accountInfo();
-		overall.add(ai, "ai");
-		getAccountInfoItem.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				cardLayout.show(overall, "ai");
-			}
-		});	*/
+	*/
 			
 		this.setBounds(100, 100, 500, 400);
 		this.setVisible(true);
+		
 		this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
 	}
 
