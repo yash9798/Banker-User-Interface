@@ -3,11 +3,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.PrintWriter;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -54,5 +51,25 @@ public class Deposit extends JPanel {
 		JButton deposit = new JButton("Deposit");
 		deposit.setPreferredSize(new Dimension(300, 40));
 		this.add(deposit,gbc);
+		
+		
+		deposit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					int unum = Integer.parseInt(tnum.getText());
+					int dAmt = Integer.parseInt(tamt.getText());
+					BankAccount ba = null;
+					for (int i = 0; i < b.size(); i++) {
+						if (b.get(i).getAccountNumber() == unum && dAmt > 0) {
+							System.out.println(b.get(i).getBalance());
+							b.get(i).deposit(dAmt);
+							System.out.println(b.get(i).getBalance());
+							ba = b.get(i);
+						}
+					}
+					JOptionPane.showMessageDialog(null, "New Balance: " + ba.getBalance(), "$" + dAmt + " Deposit Successful", JOptionPane.INFORMATION_MESSAGE);
+					
+				} catch (Exception e1) {}
+			}});
 	}
 }
