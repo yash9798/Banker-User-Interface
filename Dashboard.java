@@ -185,7 +185,6 @@ public class Dashboard extends JPanel {
 					return s;
 				}
 			}*/
-			System.out.println(s);
 			br.close();
 			return s;
 		}
