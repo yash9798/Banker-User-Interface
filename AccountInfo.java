@@ -23,6 +23,7 @@ public class AccountInfo extends JPanel {
 		this.setBounds(100, 100, 500, 250);
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
+		this.setBackground(new Color(170,153,255));
 		
 		gbc.gridx = 0;
 		gbc.gridy = 0;
