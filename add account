@@ -159,7 +159,7 @@ public class add1 extends JPanel{
 							}
 							else
 							{
-								JOptionPane.showMessageDialog(null, "hey bestie it doesnt match you might need to update info bustie bye bustie: ");
+								JOptionPane.showMessageDialog(null, "It doesnt match. You might need to update info: ");
 							}
 						}
 						else
@@ -176,7 +176,7 @@ public class add1 extends JPanel{
 					}
 					else
 					{
-						JOptionPane.showMessageDialog(null, "bustie this isnt enough information ");
+						JOptionPane.showMessageDialog(null, "Not Enough Information Entered");
 					}
 					
 					
@@ -195,18 +195,16 @@ public class add1 extends JPanel{
 					
 					if(bal2.getText().isEmpty())
 					{
-						JOptionPane.showMessageDialog(null, "not enough information entered ");
+						JOptionPane.showMessageDialog(null, "Not Enough Information Entered");
 					}
 					else
 					{
-						JOptionPane.showMessageDialog(null, "deposit entered is not a number ");
+						JOptionPane.showMessageDialog(null, "Please enter an actual number in the balance field");
 					}
 					
 					
 				}
 				
-				
-			
 		}
 		
 	});
