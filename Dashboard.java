@@ -3,9 +3,13 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.ArrayList;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -97,10 +101,25 @@ public class Dashboard extends JPanel {
 		gbc.gridy = 2;
 		gbc.anchor = gbc.CENTER;
 		gbc.insets = new Insets(10,10,10,10);
-		JButton ow = new JButton("Overwrite"); // + moners
+		JButton ow = new JButton("Write All Accounts and Refresh"); // + moners
 		ow.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			
+			public void actionPerformed(ActionEvent e){
+				try {
+					String dL = getDateLine();
+					PrintWriter pw = new PrintWriter(new FileWriter("accountInfo.txt"));
+					PrintWriter pw2 = new PrintWriter(new FileWriter("accountInfo.txt"),true);
+					pw.println();
+					pw2.println(dL);
+					pw2.println("Last updated on " + LocalDate.now());
+					for (int i = 0; i < b.size(); i++) {
+						if (b.get(i) instanceof SavingsAccount)
+							writeAccToFile((SavingsAccount)b.get(i));
+						if (b.get(i) instanceof CheckingAccount)
+							writeAccToFile((CheckingAccount)b.get(i));
+					}
+				} catch (IOException e1) {
+					System.err.println("write to file failed");
+				}
 			}});
 		add(ow,gbc);
 	}
@@ -127,6 +146,47 @@ public class Dashboard extends JPanel {
 		check.setText("Checking accounts: " +c); // + num checkings accounts
 		savings.setText("Savings accounts: " + r); // + num savings accounts
 		moners.setText("Moners deposited $" + m); // + moners
-		
 	}
+	
+	//write to file methods for savings accounts and checking accounts
+		public void writeAccToFile(SavingsAccount s) throws IOException {
+			PrintWriter pw = new PrintWriter(new FileWriter("accountInfo.txt",true));
+			pw.println("\nSA"
+					+ "<num>" + s.getAccountNumber() + "<num/>"
+					+ "<name>" + s.getName() + "<name/>"
+					+ "<street>" + s.getStreetAddress() + "<street/>"
+					+ "<city>" + s.getCity() +  "<city/>"
+					+ "<state>" + s.getState() + "<state/>"
+					+ "<zip>" + s.getZipCode() + "<zip/>"
+					+ "<balance>" + s.getBalance() + "<balance/>");
+			pw.close();
+		}
+		public void writeAccToFile(CheckingAccount c) throws IOException {
+			PrintWriter pw = new PrintWriter(new FileWriter("accountInfo.txt",true));
+			pw.println("\nCA"
+					+ "<num>" + c.getAccountNumber() + "<num/>"
+					+ "<name>" + c.getName() + "<name/>"
+					+ "<street>" + c.getStreetAddress() + "<street/>"
+					+ "<city>" + c.getCity() +  "<city/>"
+					+ "<state>" + c.getState() + "<state/>"
+					+ "<zip>" + c.getZipCode() + "<zip/>"
+					+ "<balance>" + c.getBalance() + "<balance/>"
+					+ "<trans>" + c.getNumTransactions() + "<trans/>");
+			pw.close();
+		}
+		public String getDateLine() throws IOException {
+			BufferedReader br = new BufferedReader(new FileReader("accountInfo.txt"));
+			String s = br.readLine();
+			/*while ((s = br.readLine()) != null) {
+				System.out.println(s);
+				if (s.contains("created on")) {
+					System.out.println(s);
+					br.close();
+					return s;
+				}
+			}*/
+			System.out.println(s);
+			br.close();
+			return s;
+		}
 }
