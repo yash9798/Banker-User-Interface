@@ -21,7 +21,7 @@ public class Deposit extends JPanel {
 		this.setVisible(false);
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
-		this.setBackground(new Color(255,179,102));
+		this.setBackground(new Color(204,102,0));
 		
 		gbc.gridx = 0;
 		gbc.gridy = 0;
@@ -47,5 +47,12 @@ public class Deposit extends JPanel {
 		tamt.setBounds(90, 100, 100, 30);
 		tamt.setPreferredSize(new Dimension(120, 30));
 		this.add(tamt, gbc);
+		
+		gbc.gridy = 2;
+		gbc.gridx = 0;
+		gbc.gridwidth = 2;
+		JButton deposit = new JButton("Deposit");
+		deposit.setPreferredSize(new Dimension(300, 40));
+		this.add(deposit,gbc);
 	}
 }
