@@ -11,7 +11,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import java.awt.Color;
+import java.awt.Dimension;
 
 public class Deposit extends JPanel {
 	public Deposit (ArrayList<BankAccount> b) {
@@ -19,6 +21,31 @@ public class Deposit extends JPanel {
 		this.setVisible(false);
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
-		this.setBackground(new Color(0,255,140));
+		this.setBackground(new Color(255,179,102));
+		
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.anchor = gbc.WEST;
+		gbc.insets = new Insets(10,10,10,10);
+		JLabel num = new JLabel("Account Number: ");
+		add(num,gbc);
+		
+		gbc.gridy = 1;
+		JLabel amt = new JLabel("Deposit Amount: ");
+		add(amt,gbc);
+		
+		gbc.gridy = 0;
+		gbc.gridx = 1;
+		JTextField tnum = new JTextField();
+		tnum.setBounds(90, 100, 100, 30);
+		tnum.setPreferredSize(new Dimension(120, 30));
+		this.add(tnum, gbc);
+		
+		gbc.gridy = 1;
+		gbc.gridx = 1;
+		JTextField tamt = new JTextField();
+		tamt.setBounds(90, 100, 100, 30);
+		tamt.setPreferredSize(new Dimension(120, 30));
+		this.add(tamt, gbc);
 	}
 }
