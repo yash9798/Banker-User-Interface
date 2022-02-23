@@ -186,6 +186,7 @@ public class add1 extends JPanel{
 					state2.setText(null);
 					zip2.setText(null);
 					bal2.setText(null);
+					jComboBox.setSelectedIndex(0);
 					
 			
 				
