@@ -138,7 +138,7 @@ public class add1 extends JPanel{
 					
 						for(int i = 0; i < accs.size(); i++)
 						{
-							if(accs.get(i).getName() == namebox.getText())
+							if(accs.get(i).getName().equals(namebox.getText()))
 							{
 								saved = i;
 							}
@@ -146,7 +146,7 @@ public class add1 extends JPanel{
 						
 						if(saved > -1)
 						{
-							if(accs.get(saved).getStreetAddress() == sa2.getText() && accs.get(saved).getCity() == city2.getText() && accs.get(saved).getState() == state2.getText() && accs.get(saved).getZipCode() == zip2.getText())
+							if(accs.get(saved).getStreetAddress().equals(sa2.getText()) && accs.get(saved).getCity().equals(city2.getText()) && accs.get(saved).getState().equals(state2.getText()) && accs.get(saved).getZipCode().equals(zip2.getText()))
 							{
 								if(jComboBox.getSelectedIndex() == 1)
 								{
@@ -196,14 +196,21 @@ public class add1 extends JPanel{
 					
 					if(bal2.getText().isEmpty())
 					{
+					
 						JOptionPane.showMessageDialog(null, "Not Enough Information Entered");
 					}
 					else
 					{
-						JOptionPane.showMessageDialog(null, "Please enter an actual number in the balance field");
+						JOptionPane.showMessageDialog(null, "Invalid Information");
 					}
 					
-					
+					namebox.setText(null);
+					sa2.setText(null);
+					city2.setText(null);
+					state2.setText(null);
+					zip2.setText(null);
+					bal2.setText(null);
+					jComboBox.setSelectedIndex(0);
 				}
 				
 		}
