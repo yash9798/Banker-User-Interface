@@ -85,9 +85,8 @@ public class MelBank extends JFrame {
 			}
 		});	
 		
-		/*
-		 * 
-		 * 	UserInfo userInfo = new UserInfo(accounts);
+		
+		UserInfo userInfo = new UserInfo(accounts);
 		overall.add(userInfo, "userinfo");
 		userInfoItem.addActionListener(new ActionListener() {
 			@Override
@@ -95,7 +94,7 @@ public class MelBank extends JFrame {
 			cardLayout.show(overall, "userinfo");
 		}
 		});	
-		 * Deposit dep = new Deposit(accounts);
+		Deposit dep = new Deposit(accounts);
 		overall.add(dep, "dep");
 		depositItem.addActionListener(new ActionListener() {
 			@Override
@@ -111,7 +110,8 @@ public class MelBank extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				cardLayout.show(overall, "wd");
 			}
-		});	
+		});
+		/*
 		Trans tr = new Trans();
 		overall.add(tr, "tr");
 		transferItem.addActionListener(new ActionListener() {
