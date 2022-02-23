@@ -56,5 +56,25 @@ public class Withdraw extends JPanel {
 	wd.setPreferredSize(new Dimension(300, 40));
 	this.add(wd,gbc);
 	
+	
+	wd.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			try {
+				int unum = Integer.parseInt(tnum.getText());
+				double dAmt = Double.parseDouble(tamt.getText());
+				BankAccount ba = null;
+				for (int i = 0; i < b.size(); i++) {
+					if (b.get(i).getAccountNumber() == unum && dAmt > 0) {
+						System.out.println(b.get(i).getBalance());
+						b.get(i).withdraw(dAmt);
+						System.out.println(b.get(i).getBalance());
+						ba = b.get(i);
+					}
+				}
+				JOptionPane.showMessageDialog(null, "New Balance: $" + ((int)(100*ba.getBalance()))/100.0, "$" + dAmt + " Withdrawal Successful", JOptionPane.INFORMATION_MESSAGE);
+				tnum.setText(null);
+				tamt.setText(null);
+			} catch (Exception e1) {}
+		}});
 	}
 }
