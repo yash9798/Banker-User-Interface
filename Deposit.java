@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Dimension;
 
+
 public class Deposit extends JPanel {
 	public Deposit (ArrayList<BankAccount> b) {
 		this.setBounds(100, 100, 500, 250);
