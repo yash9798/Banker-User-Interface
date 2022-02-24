@@ -7,9 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.awt.Dimension;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.awt.Color;
@@ -22,7 +20,7 @@ public class UserInfo extends JPanel {
 		this.setVisible(false);
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
-		this.setBackground(new Color(255,242,179));
+		this.setBackground(new Color(255, 242, 179));
 		
 		gbc.gridx = 1;
 		gbc.gridy = 0;
@@ -30,7 +28,7 @@ public class UserInfo extends JPanel {
 		gbc.insets = new Insets(10, 10, 10, 10);
 		JLabel nameLabel = new JLabel("Name:");
 		this.add(nameLabel, gbc);
-		gbc.gridwidth = 2;
+		
 		gbc.gridx = 2;
 		JTextField name = new JTextField();
 		name.setBounds(90, 100, 100, 30);
@@ -80,52 +78,48 @@ public class UserInfo extends JPanel {
 		
 		gbc.gridx = 2;
 		JTextField zipcode = new JTextField();
-		zipcode.setBounds(90,100,100,30);
-		zipcode.setPreferredSize(new Dimension(120,30));
-		this.add(zipcode,gbc);
+		zipcode.setBounds(90, 100, 100, 30);
+		zipcode.setPreferredSize(new Dimension(120, 30));
+		this.add(zipcode, gbc);
 		zipcode.setEnabled(false);
 
 		gbc.gridx = 0;
 		gbc.gridy = 5;
-		gbc.gridwidth = 1;
 		JButton find = new JButton("Find");
 		find.setPreferredSize(new Dimension(100, 45));
 		this.add(find, gbc);
-		if(name.getText() != null) {
 			find.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					for(int i = 0; i < accs.size(); i++) {
-						if(accs.get(i).getName().equals(name.getText())) {
-							address.setText(accs.get(i).getStreetAddress());
-							city.setText(accs.get(i).getCity());
-							state.setText(accs.get(i).getState());
-							zipcode.setText(accs.get(i).getZipCode());
+					if(!name.getText().equals("")) {
+						for(int i = 0; i < accs.size(); i++) {
+							if(accs.get(i).getName().equals(name.getText())) {
+								address.setText(accs.get(i).getStreetAddress());
+								city.setText(accs.get(i).getCity());
+								state.setText(accs.get(i).getState());
+								zipcode.setText(accs.get(i).getZipCode());
+							}
 						}
 					}
 				}
 			});
-		}
 
 		gbc.gridx = 2;
 		gbc.gridy = 5;
 		JButton update = new JButton("Update");
 		update.setPreferredSize(new Dimension(100, 45));
 		update.setEnabled(false);
-		this.add(update,gbc);
+		this.add(update, gbc);
 		update.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ArrayList<Integer> userArr = new ArrayList<Integer>();
 				for(int i = 0; i < accs.size(); i++) {
-					if(b.get(i).getName().equals(name.getText()))
-						userArr.add(i);
-				}
-				for(int i = 0; i < userArr.size(); i++) {
-					address.setText(address.getText());
-					city.setText(city.getText());
-					state.setText(state.getText());
-					zipcode.setText(zipcode.getText());
+					if(b.get(i).getName().equals(name.getText())) {
+						b.get(i).setStreetAddress(address.getText());
+						b.get(i).setCity(city.getText());
+						b.get(i).setState(state.getText());
+						b.get(i).setZipCode(zipcode.getText());
+					}
 				}
 			}
 		});
@@ -154,18 +148,20 @@ public class UserInfo extends JPanel {
 
 		gbc.gridx = 1;
 		JButton edit = new JButton("Edit");
-		edit.setPreferredSize(new Dimension(100,45));
-		this.add(edit,gbc);
+		edit.setPreferredSize(new Dimension(100, 45));
+		this.add(edit, gbc);
 		edit.addActionListener(new ActionListener() { 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				address.setEnabled(true);
-				city.setEnabled(true);
-				state.setEnabled(true);
-				zipcode.setEnabled(true);
-				name.setEnabled(false);
-				update.setEnabled(true);
-				cancel.setEnabled(true);
+				if(!name.getText().equals("")) {
+					address.setEnabled(true);
+					city.setEnabled(true);
+					state.setEnabled(true);
+					zipcode.setEnabled(true);
+					name.setEnabled(false);
+					update.setEnabled(true);
+					cancel.setEnabled(true);
+				}
 			}
 		});
 	}
