@@ -177,7 +177,7 @@ public class add1 extends JPanel{
 					}
 					else
 					{
-						JOptionPane.showMessageDialog(null, "Not Enough Information Entered");
+						JOptionPane.showMessageDialog(null, "Invalid Information");
 					}
 					
 					
@@ -198,7 +198,7 @@ public class add1 extends JPanel{
 					if(bal2.getText().isEmpty())
 					{
 					
-						JOptionPane.showMessageDialog(null, "Not Enough Information Entered");
+						JOptionPane.showMessageDialog(null, "Invalid deposit value.");
 					}
 					else
 					{
