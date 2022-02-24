@@ -30,7 +30,7 @@ public class UserInfo extends JPanel {
 		gbc.insets = new Insets(10, 10, 10, 10);
 		JLabel nameLabel = new JLabel("Name:");
 		this.add(nameLabel, gbc);
-		
+		gbc.gridwidth = 2;
 		gbc.gridx = 2;
 		JTextField name = new JTextField();
 		name.setBounds(90, 100, 100, 30);
@@ -87,6 +87,7 @@ public class UserInfo extends JPanel {
 
 		gbc.gridx = 0;
 		gbc.gridy = 5;
+		gbc.gridwidth = 1;
 		JButton find = new JButton("Find");
 		find.setPreferredSize(new Dimension(100, 45));
 		this.add(find, gbc);
