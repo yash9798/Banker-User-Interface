@@ -65,9 +65,9 @@ public class Withdraw extends JPanel {
 				BankAccount ba = null;
 				for (int i = 0; i < b.size(); i++) {
 					if (b.get(i).getAccountNumber() == unum && dAmt > 0) {
-						System.out.println(b.get(i).getBalance());
+						
 						b.get(i).withdraw(dAmt);
-						System.out.println(b.get(i).getBalance());
+						
 						ba = b.get(i);
 					}
 				}
@@ -75,6 +75,8 @@ public class Withdraw extends JPanel {
 				tnum.setText(null);
 				tamt.setText(null);
 			} catch (Exception e1) {}
+			tnum.setText(null);
+			tamt.setText(null);
 		}});
 	}
 }
