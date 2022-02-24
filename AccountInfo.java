@@ -19,8 +19,7 @@ public class AccountInfo extends JPanel {
 	ArrayList<BankAccount> accs;
 	public AccountInfo(ArrayList<BankAccount> b) {
 		accs = b;
-		this.setVisible(false);
-		this.setBounds(100, 100, 500, 250);
+		
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		this.setBackground(new Color(170,153,255));
@@ -33,14 +32,13 @@ public class AccountInfo extends JPanel {
 		gbc.gridy = 1;
 		gbc.insets = new Insets(10, 10, 10, 10);
 		JTextField name = new JTextField();
-		name.setBounds(90, 100, 100, 30);
-		name.setPreferredSize(new Dimension(120, 30));
+		
+		name.setPreferredSize(new Dimension(150, 30));
 		this.add(name, gbc);
 		
 		gbc.gridy = 2;
 		JTextArea display = new JTextArea();
-		display.setBounds(90, 100, 100, 30);
-		display.setPreferredSize(new Dimension(720, 360));
+		display.setPreferredSize(new Dimension(500, 300));
 	    display.setEditable(false); 
 	    
 	    JScrollPane scroll = new JScrollPane(display);
