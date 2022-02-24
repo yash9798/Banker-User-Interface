@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Dimension;
 
+
 public class Withdraw extends JPanel {
 	public Withdraw(ArrayList<BankAccount> b) {
 	this.setBounds(100, 100, 500, 250);
