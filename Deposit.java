@@ -71,6 +71,8 @@ public class Deposit extends JPanel {
 					tnum.setText(null);
 					tamt.setText(null);
 				} catch (Exception e1) {}
+				tnum.setText(null);
+				tamt.setText(null);
 			}});
 	}
 }
