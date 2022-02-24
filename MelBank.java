@@ -111,8 +111,8 @@ public class MelBank extends JFrame {
 				cardLayout.show(overall, "wd");
 			}
 		});
-		/*
-		Trans tr = new Trans();
+		
+		Trans tr = new Trans(accounts);
 		overall.add(tr, "tr");
 		transferItem.addActionListener(new ActionListener() {
 			@Override
@@ -121,7 +121,7 @@ public class MelBank extends JFrame {
 			}
 		});	
 		
-	*/
+	
 			
 		this.setBounds(100, 100, 500, 400);
 		this.setVisible(true);
